@@ -1,1 +1,105 @@
+HTML - HyperText Markup Language
 
+
+<form> tag.
+An HTML form is used to collect "user input". 
+The user input is most often sent to a server for processing.
+HTML의 form태그는, 사용자의 입력을 모으는데 사용되며, 입력은 서버에 전송된다.
+
+<form> Attributes
+ Ⅰ.Action Attribute
+  The action attribute defines the action to be performed when the form is submitted.
+  Usually, the form data is sent to a file on the server when the user clicks on the submit button.
+  > form의 양식이 전송될 때, 작동되는 action(동작)을 정의한 attribute(속성)입니다.
+  보통, 사용자가 전송버튼을 누를 때 form data가 서버에 하나의 파일의 형식으로 전달이 됩니다.
+  
+  If the action attribute is omitted, the action is set to the current page. 
+  만약 action속성이 없다면, 기본 설정은 현재 머무르는 페이지에 적용됩니다.
+ 
+ Ⅱ.Method Attribute <form method= "get">
+  The method attribute specifies the HTTP method to be used when submitting the form data.
+  The form-data can be sent as URL variables (with method="get") or as HTTP post transaction (with method="post").
+  The default HTTP method when submitting form data is GET. 
+  > form data가 전송될 때, 사용되는 HTTP의 method의 방식을 결정합니다. 
+    이런 form-data는 URL변수들의 형태로(get방식) 또는 HTTP post transaction의 형태(post방식)로 보내집니다.
+    기본 HTTP method는 get방식을 사용합니다.
+    
+ Ⅲ.Target Attribute  <form action="value">
+  The target attribute specifies where to display the response that is received after submitting the form.
+  > form을 전송한 뒤 받는 response의 표현 위치를 결정합니다.
+  The target attribute can have one of the following values: 해당 target속성의 값은 다음과 같은 values를 갖습니다.
+  Value  : 	Description
+  ------- ---------------
+  _blank : The response is displayed in a new window or tab - 새 창 또는 새 탭에서 열기
+  _self	: The response is displayed in the current window - 지금 사용하는 창에서 열기 (default value)
+  _parent :	The response is displayed in the parent frame
+  _top :	The response is displayed in the full body of the window - 맨위의 창에서 보이기
+  framename	: The response is displayed in a named iframe
+  
+ Ⅳ.Enctype Attribute - <form enctype="value">
+  The enctype attribute specifies how the form-data should be encoded when submitting it to the server.
+  Note: The enctype attribute can be used only if method="post".
+  > form-data가 서버로 전송 될 때, encode되는 방식을 보여줍니다. method가 post일 경우에만 사용됨.
+  application/x-www-form-urlencoded (default value) - 모든 문자들은 서버로 보내기 전에 인코딩됨 명시.
+  multipart/form-data - 모든 문자를 인코딩하지 않음. 파일이나 이미지를 서버로 전송할 때 주로 사용
+  text/plain - 공백(space)은 "+"기호로 변환, 나머지 문자는 모두 인코딩 되지 않음 명시.
+  
+ Ⅴ.그 밖의 <form> Attributes
+  accept-charset : Specifies the character encodings used for form submission - form전송 시 사용되는 character encoding방식 명시
+  autocomplete : Specifies whether a form should have autocomplete on or off - 'on'일 때, 양식 자동완성
+  name : Specifies the name of the form - 해당 form의 이름 명시. JavaScript에서의 참조요소로 사용됨.
+  rel :	Specifies the relationship between a linked resource and the current document - 연결된 문서와 현 문서간의 관계를 표시
+  
+ The HTML <form> Elements
+ ㆍ<input>
+  One of the most used form element is the <input> element. 
+  The <input> element can be displayed in several ways, depending on the type attribute.
+  가장 많이 쓰이는 요소중 하나, type attribute와 함께 여러 방식으로 표현됨.
+  ex) <input type="text" id="fname" name="fname">
+    → <input type="text"> : a single-a single-line text input field
+    → <input type="password"> : a password field
+    → <input type="submit"> : defines a button for submitting form data to a form-handler.
+    → <input type="reset"> : defines a reset button that will reset all form values to their default values
+    → <input type="radio"> : defines a radio button. (여러개의 선택지 중에서 '하나만' 선택할 수 있다. 선택 시 ⊙모양)
+    → <input type="checkbox"> : defines a checkbox. (여러 선택지 중에서 0개 ~ 여러개의 선택 가능)
+    → <input type="button"> : defines a button (버튼 생성. value="버튼이름")
+    → <input type="hidden"> : defines a hidden input field (not visible to a user) - 사용자에게는 보이지 않는 data부분.
+      물론 개발자툴 또는, View Source기능을 통해서 확인할 수 있으므로, 보안을 위한 방식으로는 적합하지 않다.
+    → <input type="file"> :  defines a file-select field and a "Browse" button for file uploads. 
+      파일 선택기능. 파일업로드를 위한 "Browse(검색)"이름의 버튼과 함께 사용한다.
+      
+ ㆍ<label> 
+  The <label> element defines a label for several form elements. - 여러 form요소들의 label(라벨-이름)을 규정.
+  The <label> element is useful for screen-reader users, 
+  because the screen-reader will read out loud the label when the user focus on the input element.
+  - screen-reader사용자들에게 유용하며, input element를 조명할 때, label을 크게 읽어준다.
+  The <label> element also help users who have difficulty clicking on very small regions (such as radio buttons or checkboxes) 
+  because when the user clicks the text within the <label> element, it toggles the radio button/checkbox.
+  - 정확한 클릭이 어려운 사용자들에게도 도움이 된다. 해당 버튼(라디오 또는 체크박스)이 토글(on or off)되므로.
+  
+ ㆍ<textarea>
+  The <textarea> element defines a multi-line input field (a text area) - 여러줄의 텍스트 입력 칸을 정의하는 요소.
+    다음과 같이 row(줄의 수)와 cols(세로칸수) attribute를 사용하여 정의한다.:
+    <textarea name="message" rows="10" cols="30"></textarea>
+  
+ ㆍ<select>
+    The <select> element defines a drop-down list:
+    The <option> elements defines an option that can be selected. - 선택요소를 정의
+    By default, the first item in the drop-down list is selected. - 기본선택자는 가장 처음의 옵션
+    To define a pre-selected option, add the selected attribute to the option: - "selected"를 넣으면, 기선택을 조절 가능
+    <label for="cars">Choose a car:</label>
+    <select id="cars" name="cars">
+    <option value="volvo">Volvo</option>
+    <option value="saab">Saab</option>
+    <option value="fiat">Fiat</option>
+    <option value="audi" selected>Audi</option>
+    </select>
+    
+ HTML Attributes
+ ㆍ<a> tag - Anchor and Attribute `href`
+  The <a> tag defines a hyperlink. The `href` attribute specifies the URL of the page the link goes to
+  하이퍼링크(다른 사이트로 연결) 기능. href 속성의 value에 해당 이동할 페이지의 URL을 넣는다.
+ ㆍ<ol> and <ul>
+   <ol> - ordered list. 순서를 표시하는 리스트. style를 정하여, 내용들을 a b c순서, 1,2,3순서등으로 설정할 수 있다.
+   <ul> - unordered list. 순서를 표시하지 않는 리스트. 
+    - 각각은 리스트의 내용물로 <li>를 사용하여 진행한다.
