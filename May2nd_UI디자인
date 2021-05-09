@@ -1,6 +1,5 @@
 HTML - HyperText Markup Language
 
-
 <form> tag.
 An HTML form is used to collect "user input". 
 The user input is most often sent to a server for processing.
@@ -103,3 +102,6 @@ HTML의 form태그는, 사용자의 입력을 모으는데 사용되며, 입력�
    <ol> - ordered list. 순서를 표시하는 리스트. style를 정하여, 내용들을 a b c순서, 1,2,3순서등으로 설정할 수 있다.
    <ul> - unordered list. 순서를 표시하지 않는 리스트. 
     - 각각은 리스트의 내용물로 <li>를 사용하여 진행한다.
+
+참고1 : https://www.w3schools.com/html/default.asp
+참고2 : http://tcpschool.com/html/
