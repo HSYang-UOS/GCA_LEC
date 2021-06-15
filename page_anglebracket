@@ -1,0 +1,53 @@
+<td colspan="4">
+			<a th:if="${pi.from gt 1}" th:href="@{/board/list(page=${pi.from-1})}">&lt;</a>
+			<span th:each="pno : ${#numbers.sequence(pi.from,pi.to)}">
+					<a th:href="@{/board/list(page=${pno})}">[[${pno}]]</a>
+			</span>
+			<a th:if="${pi.to lt pi.tot}" th:href="@{/board/list(page=${pi.to+1})}">&gt;</a>
+</td>
+
+@RequiredArgsConstructor
+@Data
+public class PageInfo {
+	private int from; // 페이지 시작번호
+	private int to;   // 페이지 끝번호
+	private int tot;  // 페이지 총 개수, 페이지의 마지막
+	
+	public PageInfo(int page, int tot) {
+		this.tot = tot; // 페이지 전체수
+		int size = 4; // 한 페이지에 표현 할 번호 개수
+		// 1/4 2/4 3/4:0 4/4:1
+		int bno=page/size; //블록번호
+		if(page%size>0) bno++;
+		
+		to = bno * size;
+		from = to - size +1;
+		// to는 배수로 늘어나서 tot보다 커질 수 있으므로
+		if(to>tot) to = tot; //마지막번호는 tot를 넘을 수 없다.
+	}	
+}
+
+@Override
+	public void findAll(int page, Model model) {	
+		int size = 10; // 한 페이지의 게시글 수 
+		System.out.println("페이지 index 번호: "+page);
+		
+		Sort sort = Sort.by(Direction.DESC,"no");
+		Pageable pageable = PageRequest.of(page-1, size, sort); // 0페이지부터 페이지 마다 10개의 데이터를 넣고, 내림차순 sort
+		
+		Page<JpaMemo> pageObj = repository.findAll(pageable);
+		System.out.println("총 페이지의 수 : "+pageObj.getTotalPages());
+		//////////// 페이지 번호, 총 페이지 개수
+		PageInfo pageInfo = new PageInfo(page, pageObj.getTotalPages());
+		
+		model.addAttribute("pi", pageInfo);
+		// 페이지 객체에서 게시글 내용만 추출
+		List<JpaMemo> result = pageObj.getContent();
+		// Entity > Dto
+		List<JpaMemoResponseDto> list = result.stream()
+												  .map(JpaMemoResponseDto::new)
+												  .collect(Collectors.toList());
+		model.addAttribute("toDay", LocalDate.now());
+		model.addAttribute("list", list);		
+		
+	}
