@@ -1,0 +1,33 @@
+pwd : 경로확인 (사용자 디렉토리 확인)
+/home/hs_yang82s ~ (home/구글아이디)
+cd / (root로 이동)
+ls : 디렉토리 확인
+start:  실행명령어
+centOS 8 : AppStream 지원
+
+1. 설치
+sudo yum install mysql-server
+2. 시스템 재시작시 mysql이 자동으로 실행되도록 하기위해 
+sudo systemctl enable mysqld
+
+> Created symlink /etc/systemd/system/multi-user.target.wants/mysqld.service → /usr/lib/systemd/system/mysqld.service. 이런결과 나옴.
+
+3. mysql실행
+sudo systemctl start mysqld
+
+4. mysql 설정하기(보안설정 등등)
+mysql_secure_installation
+
+5.로그인
+   mysql - u root -p
+(엔터)>Enter password: 비밀번호입력 (엔터)
+
+6. 사용자생성( 실 사용 비밀번호는 어렵게!)
+mysql> create user 'the'@'localhost' identified by '12345678';
+mysql> create user 'the'@'%' identified by '12345678';(외부접속용)
+
+7. 모든권한부여(모든 스키마의 모든 테이블: 스키마.table)
+mysql> grant all privileges on *.* to 'the'@'%';
+ex> grant select,insert,update on *.* to 'the'@'%';
+
+8. exit
